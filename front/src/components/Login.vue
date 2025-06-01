@@ -28,7 +28,7 @@ export default {
 
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
-            this.$router.push('/chat'); 
+            this.$router.push('/messenger'); 
         } catch (error) {
             console.error('Login error:', error.response?.data || error.message);
             alert('Invalid account details');
