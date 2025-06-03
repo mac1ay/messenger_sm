@@ -1,30 +1,48 @@
 <template>
   <div class="chat-window">
-    <div v-if="selectedContact">
-      Чат с {{ selectedContact.username }}
-    </div>
-    <div v-else>
-      It's empty here...
-    </div>
+    <chat-header :username="selectedContact.username" :userAvatar="selectedContact.avatar" />
+    <message-list :messages="messages" />
+    <message-input @send="addMessage" />
   </div>
 </template>
 <script>
+import ChatHeader from './ChatHeader.vue';
+import MessageList from './MessageList.vue';
+import MessageInput from './MessageInput.vue';
+
 export default {
+  components: {
+    ChatHeader,
+    MessageList,
+    MessageInput,
+  },
   props: {
     selectedContact: {
       type: Object,
-      default: null,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      messages: [], // Список сообщений юзера
+    };
+  },
+  methods: {
+    addMessage(text) {
+      const newMessage = {
+        id: this.messages.length + 1,
+        sender: 'you', // Время от времени будет обновляться для разных пользователей
+        text: text,
+      };
+      this.messages.push(newMessage);
     },
   },
 };
 </script>
 <style scoped>
 .chat-window {
-  padding: 20px;
   background: #202633;
-  border: 1px solid rgba(23, 35, 51, 0.8);
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
 }

@@ -1,13 +1,16 @@
 <template>
-    <div class="messenger-container">
-        <div class="sidebar">
-            <Search @search="handleSearch" />
-            <ContactList :contacts="filteredContacts" @select="selectContact" />
-        </div>
-        <div class="main-content">
-            <ChatWindow :selectedContact="selectedContact" />
-        </div>
+  <div class="messenger-container">
+    <div class="sidebar">
+      <Search @search="handleSearch" />
+      <ContactList :contacts="filteredContacts" @select="selectContact" />
     </div>
+    <div class="main-content">
+      <ChatWindow v-if="selectedContact" :selectedContact="selectedContact" />
+         <div class="noContact">
+      It's empty here...
+         </div>
+    </div>
+  </div>
 </template>
 <script>
 import Search from '../components/SearchByLogin.vue';
@@ -24,7 +27,7 @@ export default {
       contacts: [
         { id: 1, username: 'smadmin' },
         { id: 2, username: 'testuser' },
-        // Добавьте дополнительные контакты по мере необходимости
+        // Добавьте другие контакты по мере необходимости
       ],
       selectedContact: null,
       searchQuery: '',
@@ -39,7 +42,7 @@ export default {
   },
   methods: {
     handleSearch(query) {
-      this.searchQuery = query; // Обновляем состояние поиска
+      this.searchQuery = query;
     },
     selectContact(contact) {
       this.selectedContact = contact; // Устанавливаем выбранный контакт
@@ -47,18 +50,22 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .messenger-container {
   display: flex;
   height: 100vh;
-  background: #23272a;
+  background: #202633;
 }
 .sidebar {
   height: 100%;
   width: 500px;
-  border-right: 1px solid rgba(23, 35, 51, 0.8);;
+  border-right: 3px solid rgba(23, 35, 51, 0.8);;
 }
 .main-content {
   flex: 1;
+}
+.noContact {
+  margin-top: 25%;
 }
 </style>

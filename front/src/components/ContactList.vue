@@ -28,9 +28,9 @@ export default {
 </script>
 <style scoped>
 .list-container {
-  padding: 5px;
+  padding: 5px; 
   background: #0e1723;
-  height: 100%;
+  height: 94%;
   overflow-y: auto;
 }
 .contact-item {
@@ -39,6 +39,6 @@ export default {
   cursor: pointer;
 }
 .contact-item:hover {
-  background: #353a40;
+  background: #101e2c;
 }
 </style>

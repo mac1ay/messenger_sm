@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     backgroundClass() {
-      // Проверяем текущий маршрут
+
       const path = this.$route.path;
       return path === '/messenger' ? 'page-background' : '';
     },
